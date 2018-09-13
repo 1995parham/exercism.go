@@ -5,3 +5,27 @@
 ## Introduction
 Exercism is an online platform designed to help you improve your coding skills through practice and mentorship.
 This repository contains my solutions to its go track.
+
+## Progress
+
+| Problem        | Status    |
+|:-------------- |:---------:|
+| Hello World    | Completed |
+| Two Fer        | Completed |
+| Hamming        | Completed |
+| Raindrops      | Completed |
+| Scrabble Score | Completed |
+| Isogram        | Completed |
+| Isogram        | Completed |
+| Difference Of Squares | Completed |
+| Luhn           | ?         |
+| Grains         | Completed |
+| Clock          | ?         |
+| Parallel Letter Frequency | ? |
+| Tree Building  | Completed |
+| Robot Name     | Completed |
+| Tournament     | Completed |
+| Twelve Days    | Completed |
+| Matrix         | Completed |
+| Error Handling | Completed |
+| Bank Account   | Completed |
