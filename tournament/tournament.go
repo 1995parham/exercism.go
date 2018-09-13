@@ -97,9 +97,13 @@ func Tally(r io.Reader, w io.Writer) error {
 		return teams[i].Name < teams[j].Name
 	})
 
-	io.WriteString(w, "Team                           | MP |  W |  D |  L |  P\n")
+	if _, err := io.WriteString(w, "Team                           | MP |  W |  D |  L |  P\n"); err != nil {
+		return err
+	}
 	for _, team := range teams {
-		io.WriteString(w, fmt.Sprintf("%-30s |  %d |  %d |  %d |  %d |  %d\n", team.Name, team.Games, team.Win, team.Draw, team.Loss, team.Points))
+		if _, err := io.WriteString(w, fmt.Sprintf("%-30s |  %d |  %d |  %d |  %d |  %d\n", team.Name, team.Games, team.Win, team.Draw, team.Loss, team.Points)); err != nil {
+			return err
+		}
 	}
 
 	return nil
