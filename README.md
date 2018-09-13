@@ -26,9 +26,9 @@ go test ./... -bench=.
 | Isogram        | Completed |
 | Isogram        | Completed |
 | Difference Of Squares | Completed |
-| Luhn           | ?         |
+| Luhn           | Completed |
 | Grains         | Completed |
-| Clock          | ?         |
+| Clock          | Completed |
 | Parallel Letter Frequency | Completed |
 | Tree Building  | Completed |
 | Robot Name     | Completed |
