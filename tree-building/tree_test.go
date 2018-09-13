@@ -271,7 +271,9 @@ var twoTreeRecords = makeTwoTreeRecords()
 
 func BenchmarkTwoTree(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		Build(twoTreeRecords)
+		if _, err := Build(twoTreeRecords); err != nil {
+			b.Error(err)
+		}
 	}
 }
 
@@ -292,7 +294,9 @@ var tenTreeRecords = makeTenTreeRecords()
 
 func BenchmarkTenTree(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		Build(tenTreeRecords)
+		if _, err := Build(tenTreeRecords); err != nil {
+			b.Error(err)
+		}
 	}
 }
 
@@ -308,6 +312,8 @@ var shallowRecords = makeShallowRecords()
 
 func BenchmarkShallowTree(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		Build(shallowRecords)
+		if _, err := Build(shallowRecords); err != nil {
+			b.Error(err)
+		}
 	}
 }
