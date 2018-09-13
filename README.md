@@ -29,7 +29,7 @@ go test ./... -bench=.
 | Luhn           | ?         |
 | Grains         | Completed |
 | Clock          | ?         |
-| Parallel Letter Frequency | ? |
+| Parallel Letter Frequency | Completed |
 | Tree Building  | Completed |
 | Robot Name     | Completed |
 | Tournament     | Completed |
