@@ -33,7 +33,9 @@ func BenchmarkHamming(b *testing.B) {
 	// bench combined time to run through all test cases
 	for i := 0; i < b.N; i++ {
 		for _, tc := range testCases {
-			Distance(tc.s1, tc.s2)
+			if _, err := Distance(tc.s1, tc.s2); err != nil {
+				b.Error(err)
+			}
 		}
 	}
 }
