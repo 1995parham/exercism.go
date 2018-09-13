@@ -1,5 +1,7 @@
 package erratum
 
+import "log"
+
 // Use opens a resource, calls Frob(input) on the result resource and then closes that resource (in all cases).
 func Use(o ResourceOpener, input string) (rerr error) {
 	var r Resource
@@ -17,7 +19,10 @@ func Use(o ResourceOpener, input string) (rerr error) {
 	}
 
 	defer func() {
-		r.Close()
+		err := r.Close()
+		if err != nil {
+			log.Printf("Failed to close resource %v with %s", r, err)
+		}
 	}()
 
 	defer func() {
