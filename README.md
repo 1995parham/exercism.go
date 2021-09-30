@@ -1,5 +1,6 @@
 # Exercism.go
 
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/1995parham/exercism.go/ci?label=ci&logo=github&style=flat-square)
 [![Exercism.io](https://img.shields.io/badge/exercism.io-1995parham-orange.svg?style=flat-square)](https://exercism.org/profiles/1995parham)
 
 ## Introduction
