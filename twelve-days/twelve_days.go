@@ -52,7 +52,8 @@ func Song() string {
 	for i := 1; i < 12; i++ {
 		s += fmt.Sprintf("%s\n", Verse(i))
 	}
-	s += fmt.Sprintf("%s", Verse(12))
+
+	s += Verse(12)
 
 	return s
 }
