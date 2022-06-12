@@ -1,16 +1,3 @@
-/*
- *
- * In The Name of God
- *
- * +===============================================
- * | Author:        Parham Alvani <parham.alvani@gmail.com>
- * |
- * | Creation Date: 25-08-2018
- * |
- * | File Name:     tournament.go
- * +===============================================
- */
-
 package tournament
 
 import (
@@ -21,7 +8,7 @@ import (
 	"strings"
 )
 
-// Team represents a team in tournament
+// Team represents a team in tournament.
 type Team struct {
 	Name string
 
@@ -33,7 +20,7 @@ type Team struct {
 	Games  int
 }
 
-// NewTeam creates new team and calculate its points and games
+// NewTeam creates new team and calculate its points and games.
 func NewTeam(name string, w int, d int, l int) Team {
 	return Team{
 		Name: name,
@@ -47,7 +34,7 @@ func NewTeam(name string, w int, d int, l int) Team {
 	}
 }
 
-// Tally creates matches table based on given report
+// Tally creates matches table based on given report.
 func Tally(r io.Reader, w io.Writer) error {
 	scanner := bufio.NewScanner(r)
 	matches := make(map[string]string)
