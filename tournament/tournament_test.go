@@ -139,15 +139,11 @@ func BenchmarkTally(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		for _, tt := range happyTestCases {
 			var buffer bytes.Buffer
-			if err := Tally(strings.NewReader(tt.input), &buffer); err != nil {
-				b.Error(err)
-			}
+			Tally(strings.NewReader(tt.input), &buffer)
 		}
 		for _, s := range errorTestCases {
 			var buffer bytes.Buffer
-			if err := Tally(strings.NewReader(s), &buffer); err != nil {
-				b.Error(err)
-			}
+			Tally(strings.NewReader(s), &buffer)
 		}
 	}
 }

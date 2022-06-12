@@ -1,6 +1,11 @@
 # Scrabble Score
 
-Given a word, compute the scrabble score for that word.
+Welcome to Scrabble Score on Exercism's Go Track.
+If you need help running the tests or submitting your code, check out `HELP.md`.
+
+## Instructions
+
+Given a word, compute the Scrabble score for that word.
 
 ## Letter Values
 
@@ -39,26 +44,30 @@ And to total:
 - You can play a double or a triple letter.
 - You can play a double or a triple word.
 
-## Running the tests
-
-To run the tests run the command `go test` from within the exercise directory.
-
-If the test suite contains benchmarks, you can run these with the `--bench` and `--benchmem`
-flags:
-
-    go test -v --bench . --benchmem
-
-Keep in mind that each reviewer will run benchmarks on a different machine, with
-different specs, so the results from these benchmark tests may vary.
-
-## Further information
-
-For more detailed information about the Go track, including how to get help if
-you're having trouble, please visit the exercism.io [Go language page](http://exercism.io/languages/go/about).
-
 ## Source
 
-Inspired by the Extreme Startup game [https://github.com/rchatley/extreme_startup](https://github.com/rchatley/extreme_startup)
+### Created by
 
-## Submitting Incomplete Solutions
-It's possible to submit an incomplete solution so you can see how others have completed the exercise.
+- @nathany
+
+### Contributed to by
+
+- @alebaffa
+- @bitfield
+- @ekingery
+- @ferhatelmas
+- @HaraldNordgren
+- @hilary
+- @ilmanzo
+- @kotp
+- @kytrinyx
+- @leenipper
+- @petertseng
+- @robphoenix
+- @sebito91
+- @sjakobi
+- @tleen
+
+### Based on
+
+Inspired by the Extreme Startup game - https://github.com/rchatley/extreme_startup

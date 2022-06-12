@@ -1,8 +1,8 @@
 package isogram
 
 // Source: exercism/problem-specifications
-// Commit: 79f1357 isogram: Apply new "input" policy (#1180)
-// Problem Specifications Version: 1.3.0
+// Commit: 74869e8 isogram: Add test case for dupe after non-letter (fixes #1390)
+// Problem Specifications Version: 1.7.0
 
 var testCases = []struct {
 	description string
@@ -25,6 +25,11 @@ var testCases = []struct {
 		expected:    false,
 	},
 	{
+		description: "word with one duplicated character from the end of the alphabet",
+		input:       "zzyzx",
+		expected:    false,
+	},
+	{
 		description: "longest reported english isogram",
 		input:       "subdermatoglyphic",
 		expected:    true,
@@ -35,9 +40,19 @@ var testCases = []struct {
 		expected:    false,
 	},
 	{
+		description: "word with duplicated character in mixed case, lowercase first",
+		input:       "alphAbet",
+		expected:    false,
+	},
+	{
 		description: "hypothetical isogrammic word with hyphen",
 		input:       "thumbscrew-japingly",
 		expected:    true,
+	},
+	{
+		description: "hypothetical word with duplicated character following hyphen",
+		input:       "thumbscrew-jappingly",
+		expected:    false,
 	},
 	{
 		description: "isogram with duplicated hyphen",
@@ -52,6 +67,11 @@ var testCases = []struct {
 	{
 		description: "duplicated character in the middle",
 		input:       "accentor",
+		expected:    false,
+	},
+	{
+		description: "same first and last characters",
+		input:       "angola",
 		expected:    false,
 	},
 }

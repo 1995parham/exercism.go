@@ -33,7 +33,7 @@ func (e FrobError) Error() string {
 	return e.inner.Error()
 }
 
-// Resource represents abstract resource with close and frob methods.
+// Resource defines an interface for a resource.
 type Resource interface {
 
 	// Resource is using composition to inherit the requirements of the io.Closer

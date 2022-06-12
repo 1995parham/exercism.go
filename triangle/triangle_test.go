@@ -1,7 +1,6 @@
 package triangle
 
 import (
-	"math"
 	"testing"
 )
 
@@ -18,12 +17,10 @@ var testData = []testCase{
 	{Iso, 4, 3, 4},    // first and last sides equal
 	{Iso, 4, 4, 3},    // first two sides equal
 	{Iso, 10, 10, 2},  // again
-	{Iso, 2, 4, 2},    // a "triangle" that is just a line is still OK
 	{Sca, 3, 4, 5},    // no sides equal
 	{Sca, 10, 11, 12}, // again
 	{Sca, 5, 4, 2},    // descending order
 	{Sca, .4, .6, .3}, // small sides
-	{Sca, 1, 4, 3},    // a "triangle" that is just a line is still OK
 	{Sca, 5, 4, 6},    // 2a == b+c looks like equilateral, but isn't always.
 	{Sca, 6, 4, 5},    // 2a == b+c looks like equilateral, but isn't always.
 	{NaT, 0, 0, 0},    // zero length
@@ -31,24 +28,6 @@ var testData = []testCase{
 	{NaT, 1, 1, 3},    // fails triangle inequality
 	{NaT, 2, 5, 2},    // another
 	{NaT, 7, 3, 2},    // another
-}
-
-// generate cases with NaN and Infs, append to basic cases
-func init() {
-	nan := math.NaN()
-	pinf := math.Inf(1)
-	ninf := math.Inf(-1)
-	nf := make([]testCase, 4*4*4)
-	i := 0
-	for _, a := range []float64{3, nan, pinf, ninf} {
-		for _, b := range []float64{4, nan, pinf, ninf} {
-			for _, c := range []float64{5, nan, pinf, ninf} {
-				nf[i] = testCase{NaT, a, b, c}
-				i++
-			}
-		}
-	}
-	testData = append(testData, nf[1:]...)
 }
 
 // Test that the kinds are not equal to each other.
@@ -85,6 +64,9 @@ func TestKind(t *testing.T) {
 }
 
 func BenchmarkKind(b *testing.B) {
+	if testing.Short() {
+		b.Skip("skipping benchmark in short mode.")
+	}
 	for i := 0; i < b.N; i++ {
 		for _, test := range testData {
 			KindFromSides(test.a, test.b, test.c)
