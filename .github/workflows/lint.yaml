@@ -1,21 +1,47 @@
 ---
-name: ci
+name: lint
 on:
-  - push
+
 jobs:
-  lint:
-    name: lint
+  projects:
+    name: projects
     runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
+      - id: set-matrix
+        run: |
+          mapfile -d $'\0' projects < <(find go -maxdepth 1 -type d -not -path . -printf '%P\0')
+          echo -n '::set-output name=matrix::{"project": ['
+          printf '"%s",' "${projects[@]}" | sed '$s/,$//'
+          echo ']}'
+  golangci:
+    name: lint
+    needs: projects
+    runs-on: ubuntu-latest
+    strategy:
+      matrix: ${{ fromJSON(needs.projects.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-go@v3
+        with:
+          go-version: '1.18'
       - name: golangci-lint
-        uses: golangci/golangci-lint-action@v2
+        uses: golangci/golangci-lint-action@v3.2.0
         with:
           version: latest
-  test:
+          working-directory: go/${{ matrix.project }}
+
+  go:
     name: test
+    needs: projects
     runs-on: ubuntu-latest
+    strategy:
+      matrix: ${{ fromJSON(needs.projects.outputs.matrix) }}
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-go@v2
-      - run: go test -v ./...
+      - uses: actions/checkout@v3
+      - uses: actions/setup-go@v3
+        with:
+          go-version: '1.18'
+      - run: cd go/${{ matrix.project }} && go test ./...
