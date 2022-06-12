@@ -1,16 +1,3 @@
-/*
- *
- * In The Name of God
- *
- * +===============================================
- * | Author:        Parham Alvani <parham.alvani@gmail.com>
- * |
- * | Creation Date: 28-08-2018
- * |
- * | File Name:     matrix.go
- * +===============================================
- */
-
 package matrix
 
 import (
@@ -19,17 +6,13 @@ import (
 	"strings"
 )
 
-// Matrix is a 2D collection of integer
-type Matrix struct {
-	rows [][]int
-}
+// Matrix is a 2D collection of integer.
+type Matrix [][]int
 
 // New creates new matrix from given string representation
-// of a matrix
-func New(in string) (*Matrix, error) {
-	m := Matrix{
-		rows: make([][]int, 0),
-	}
+// of a matrix.
+func New(in string) (Matrix, error) {
+	m := Matrix(make([][]int, 0))
 
 	// each line represents a row
 	rows := strings.Split(in, "\n")
@@ -37,8 +20,10 @@ func New(in string) (*Matrix, error) {
 	for _, row := range rows {
 		// columns are separated with spaces
 		cols := strings.Fields(row)
+
 		// creates new row
 		newRow := make([]int, 0)
+
 		for _, col := range cols {
 			// convert string cell to number
 			n, err := strconv.Atoi(col)
@@ -49,24 +34,24 @@ func New(in string) (*Matrix, error) {
 			newRow = append(newRow, n)
 		}
 		// adds new row into matrix
-		m.rows = append(m.rows, newRow)
+		m = append(m, newRow)
 	}
 
 	// validate that each row size must equal with other rows
-	for i := 1; i < len(m.rows); i++ {
-		if len(m.rows[i]) != len(m.rows[i-1]) {
+	for i := 1; i < len(m); i++ {
+		if len(m[i]) != len(m[i-1]) {
 			return nil, fmt.Errorf("Each row size must equat with other rows size")
 		}
 	}
 
-	return &m, nil
+	return m, nil
 }
 
-// Rows returns rows of matrix
-func (m *Matrix) Rows() [][]int {
+// Rows returns rows of matrix.
+func (m Matrix) Rows() [][]int {
 	rows := make([][]int, 0)
 
-	for _, row := range m.rows {
+	for _, row := range m {
 		newRow := make([]int, len(row))
 		copy(newRow, row)
 		rows = append(rows, newRow)
@@ -75,28 +60,32 @@ func (m *Matrix) Rows() [][]int {
 	return rows
 }
 
-// Cols returns cols of matrix
-func (m *Matrix) Cols() [][]int {
+// Cols returns cols of matrix.
+func (m Matrix) Cols() [][]int {
 	cols := make([][]int, 0)
 
 	// for each column
-	for i := 0; i < len(m.rows[0]); i++ {
+	for i := 0; i < len(m[0]); i++ {
 		newCol := make([]int, 0)
-		for _, row := range m.rows {
+		for _, row := range m {
 			newCol = append(newCol, row[i])
 		}
+
 		cols = append(cols, newCol)
 	}
+
 	return cols
 }
 
-// Set changes value in given row and column to new given value
-func (m *Matrix) Set(row, col, value int) bool {
-	if row < len(m.rows) && row >= 0 {
-		if col < len(m.rows[row]) && col >= 0 {
-			m.rows[row][col] = value
+// Set changes value in given row and column to new given value.
+func (m Matrix) Set(row, col, value int) bool {
+	if row < len(m) && row >= 0 {
+		if col < len(m[row]) && col >= 0 {
+			m[row][col] = value
+
 			return true
 		}
 	}
+
 	return false
 }
