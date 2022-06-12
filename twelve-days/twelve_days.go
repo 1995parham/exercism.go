@@ -49,9 +49,10 @@ var presents = map[int]string{
 func Song() string {
 	var s string
 
-	for i := 1; i <= 12; i++ {
+	for i := 1; i < 12; i++ {
 		s += fmt.Sprintf("%s\n", Verse(i))
 	}
+	s += fmt.Sprintf("%s", Verse(12))
 
 	return s
 }
@@ -71,5 +72,5 @@ func Verse(day int) string {
 		}
 	}
 
-	return fmt.Sprintf("On the %s day of Christmas my true love gave to me, %s.", days[day], present)
+	return fmt.Sprintf("On the %s day of Christmas my true love gave to me: %s.", days[day], present)
 }
