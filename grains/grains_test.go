@@ -38,9 +38,7 @@ func BenchmarkSquare(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 
 		for _, test := range squareTests {
-			if _, err := Square(test.input); err != nil {
-				b.Error(err)
-			}
+			Square(test.input)
 		}
 
 	}

@@ -1,8 +1,8 @@
 package clock
 
 // Source: exercism/problem-specifications
-// Commit: 8b96944 clock: remove obsolete sentence from comment
-// Problem Specifications Version: 2.2.1
+// Commit: b344762 clock: Add test case for exactly negative sixty minutes.
+// Problem Specifications Version: 2.4.0
 
 // Create a new clock with an initial time
 var timeTests = []struct {
@@ -26,6 +26,7 @@ var timeTests = []struct {
 	{1, -40, "00:20"},      // negative minutes
 	{1, -160, "22:20"},     // negative minutes roll over
 	{1, -4820, "16:40"},    // negative minutes roll over continuously
+	{2, -60, "01:00"},      // negative sixty minutes is previous hour
 	{-25, -160, "20:20"},   // negative hour and minutes both roll over
 	{-121, -5810, "22:10"}, // negative hour and minutes both roll over continuously
 }
@@ -155,6 +156,12 @@ var eqTests = []struct {
 	{
 		hm{18, 7},
 		hm{-54, -11513},
+		true,
+	},
+	// full clock and zeroed clock
+	{
+		hm{24, 0},
+		hm{0, 0},
 		true,
 	},
 }

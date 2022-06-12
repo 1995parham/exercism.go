@@ -1,15 +1,17 @@
 // For the Matrix exercise in Go you have to do a few things not mentioned
 // in the README.
 //
-// 1. You must implement a constructor and methods Rows() and Cols() as
-//    described in the README, but Rows() and Cols must return results that
-//    are independent from the original matrix.  That is, you should be able
-//    to do as you please with the results without affecting the matrix.
+// 1. Implement the type Matrix
 //
-// 2. You must implement a method Set(row, col, val) for setting a matrix
-//    element.
+// 2. Write a method with signature: New(s string) (Matrix, error)
 //
-// 3. As usual in Go, you must detect and return error conditions.
+// 3. Decorate the Matrix type, with three methods:
+//      - Cols() [][]int
+//      - Rows() [][]int
+//      - Set(row, column, value int) bool
+//    Cols and Rows must return the results without affecting the matrix.
+//
+// Detect and return error when it is expected.
 
 package matrix
 
@@ -174,7 +176,7 @@ func TestRows(t *testing.T) {
 			continue // agreement, and nothing more to test
 		}
 		if !reflect.DeepEqual(r, test.rows) {
-			t.Fatalf("New(%q).Rows() = %v, want %v", test.in, r, test.rows)
+			t.Fatalf("New(%q).Rows() = %v (type %T), want %v (type %T)", test.in, r, r, test.rows, test.rows)
 		}
 		if len(r[0]) == 0 {
 			continue // not currently in test data, but anyway
@@ -201,7 +203,7 @@ func TestCols(t *testing.T) {
 			continue // agreement, and nothing more to test
 		}
 		if !reflect.DeepEqual(c, test.cols) {
-			t.Fatalf("New(%q).Cols() = %v, want %v", test.in, c, test.cols)
+			t.Fatalf("New(%q).Cols() = %v (type %T), want %v (type %T)", test.in, c, c, test.cols, test.cols)
 		}
 		if len(c[0]) == 0 {
 			continue // not currently in test data, but anyway
@@ -262,5 +264,49 @@ func TestSet(t *testing.T) {
 				t.Fatalf("Matrix(%q).Set(%d, %d, 0) = ok, want !ok", s, r, c)
 			}
 		}
+	}
+}
+
+func BenchmarkNew(b *testing.B) {
+	var matrix Matrix
+	for i := 0; i < b.N; i++ {
+		var err error
+		matrix, err = New("1 2 3 10 11\n4 5 6 11 12\n7 8 9 12 13\n 8 7 6 13 14")
+		if err != nil {
+			b.Fatalf("Failed to create the matrix: %v", err)
+		}
+	}
+	if matrix == nil {
+		b.Fatalf("No matrix parsed")
+	}
+}
+
+func BenchmarkRows(b *testing.B) {
+	matrix, err := New("1 2 3\n4 5 6\n7 8 9\n 8 7 6")
+	if err != nil {
+		b.Fatalf("Failed to create the matrix: %v", err)
+	}
+	b.ResetTimer()
+	var rows [][]int
+	for i := 0; i < b.N; i++ {
+		rows = matrix.Rows()
+	}
+	if len(rows) != 4 {
+		b.Fatalf("Incorrect number of rows returned: %v", rows)
+	}
+}
+
+func BenchmarkCols(b *testing.B) {
+	matrix, err := New("1 2 3 10 11\n4 5 6 11 12\n7 8 9 12 13\n 8 7 6 13 14")
+	if err != nil {
+		b.Fatalf("Failed to create the matrix: %v", err)
+	}
+	b.ResetTimer()
+	var cols [][]int
+	for i := 0; i < b.N; i++ {
+		cols = matrix.Cols()
+	}
+	if len(cols) != 5 {
+		b.Fatalf("Incorrect number of columns returned: %v", cols)
 	}
 }
