@@ -12,7 +12,7 @@ jobs:
       - uses: actions/checkout@v3
       - id: set-matrix
         run: |
-          mapfile -d $'\0' projects < <(find . -maxdepth 1 -mindepth 1 -type d -printf '%P\0')
+          mapfile -d $'\0' projects < <(find . -maxdepth 1 -mindepth 1 -type d -not -path '*/[.]*' -printf '%P\0')
           echo -n '::set-output name=matrix::{"project": ['
           printf '"%s",' "${projects[@]}" | sed '$s/,$//'
           echo ']}'
