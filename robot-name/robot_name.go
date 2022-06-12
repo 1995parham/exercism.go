@@ -19,7 +19,7 @@ import (
 	"time"
 )
 
-// not safe for concurrent use
+// not safe for concurrent use.
 var used map[string]bool
 
 func init() {
@@ -29,14 +29,14 @@ func init() {
 	used[""] = true
 }
 
-// Robot represents robot :D
+// Robot represents robot.
 type Robot struct {
 	set  bool
 	name string
 }
 
 // Name creates new name for your robot
-func (r *Robot) Name() string {
+func (r *Robot) Name() (string, error) {
 	if !r.set {
 		for used[r.name] {
 			digits := rand.Int63n(1000)    // [0, 1000)
@@ -48,7 +48,8 @@ func (r *Robot) Name() string {
 		used[r.name] = true
 		r.set = true
 	}
-	return r.name
+
+	return r.name, nil
 }
 
 // Reset resets robot into its factory settings
