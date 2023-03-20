@@ -24,7 +24,7 @@ jobs:
       matrix: ${{ fromJSON(needs.projects.outputs.matrix) }}
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-go@v3
+      - uses: actions/setup-go@v4
         with:
           go-version: '1.18'
       - name: golangci-lint
@@ -42,7 +42,7 @@ jobs:
       matrix: ${{ fromJSON(needs.projects.outputs.matrix) }}
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-go@v3
+      - uses: actions/setup-go@v4
         with:
           go-version: '1.18'
       - run: cd ${{ matrix.project }} && go test ./...
