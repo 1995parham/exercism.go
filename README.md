@@ -1,7 +1,9 @@
-# Exercism.go
-
-![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/1995parham/exercism.go/lint.yaml?label=ci&logo=github&style=flat-square&branch=main)
-[![Exercism.io](https://img.shields.io/badge/exercism.io-1995parham-orange.svg?style=flat-square&logo=exercism)](https://exercism.org/profiles/1995parham)
+<div align="center">
+  <h1>Exercism.go</h1>
+  
+  ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/1995parham/exercism.go/lint.yaml?label=ci&logo=github&style=for-the-badge&branch=main)
+  [![Exercism.io](https://img.shields.io/badge/exercism.io-1995parham-orange.svg?style=for-the-badge&logo=exercism)](https://exercism.org/profiles/1995parham)
+</div>
 
 ## Introduction
 
