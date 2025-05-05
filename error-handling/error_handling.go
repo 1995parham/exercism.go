@@ -17,7 +17,7 @@ func Use(o ResourceOpener, input string) (rerr error) {
 	}
 
 	defer func() {
-		r.Close()
+		_ = r.Close()
 	}()
 
 	defer func() {

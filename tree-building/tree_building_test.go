@@ -225,7 +225,7 @@ func TestMakeTreeSuccess(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			actual, err := Build(tt.input)
 			if err != nil {
-				var _ error = err
+				_ = err
 				t.Fatalf("Build for test case %q returned error %q. Error not expected.",
 					tt.name, err)
 			}
@@ -275,7 +275,7 @@ var twoTreeRecords = makeTwoTreeRecords()
 
 func BenchmarkTwoTree(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		Build(twoTreeRecords)
+		_, _ = Build(twoTreeRecords)
 	}
 }
 
@@ -296,7 +296,7 @@ var tenTreeRecords = makeTenTreeRecords()
 
 func BenchmarkTenTree(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		Build(tenTreeRecords)
+		_, _ = Build(tenTreeRecords)
 	}
 }
 
@@ -312,6 +312,6 @@ var shallowRecords = makeShallowRecords()
 
 func BenchmarkShallowTree(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		Build(shallowRecords)
+		_, _ = Build(shallowRecords)
 	}
 }

@@ -20,7 +20,7 @@ import (
 
 // Valid validates given string with luhn algorithm
 func Valid(input string) bool {
-	input = strings.Replace(input, " ", "", -1)
+	input = strings.ReplaceAll(input, " ", "")
 	if len(input) <= 1 {
 		return false
 	}

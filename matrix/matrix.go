@@ -40,7 +40,7 @@ func New(in string) (Matrix, error) {
 	// validate that each row size must equal with other rows
 	for i := 1; i < len(m); i++ {
 		if len(m[i]) != len(m[i-1]) {
-			return nil, fmt.Errorf("Each row size must equat with other rows size")
+			return nil, fmt.Errorf("each row size must equat with other rows size")
 		}
 	}
 

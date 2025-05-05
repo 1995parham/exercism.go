@@ -147,7 +147,7 @@ func TestNew(t *testing.T) {
 		m, err := New(test.in)
 		switch {
 		case err != nil:
-			var _ error = err
+			var _ = err
 			if test.ok {
 				t.Fatalf("New(%q) returned error %q.  Error not expected",
 					test.in, err)

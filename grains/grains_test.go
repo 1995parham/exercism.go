@@ -19,7 +19,7 @@ func TestSquare(t *testing.T) {
 		}
 		// if we don't expect an error and there is one
 		if !test.expectError && actualErr != nil {
-			var _ error = actualErr
+			_ = actualErr
 			t.Fatalf("FAIL: %s\nSquare(%d) expected no error, but error is: %s", test.description, test.input, actualErr)
 		}
 		t.Logf("PASS: %s", test.description)
@@ -34,13 +34,10 @@ func TestTotal(t *testing.T) {
 }
 
 func BenchmarkSquare(b *testing.B) {
-
 	for i := 0; i < b.N; i++ {
-
 		for _, test := range squareTests {
-			Square(test.input)
+			_, _ = Square(test.input)
 		}
-
 	}
 }
 

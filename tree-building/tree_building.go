@@ -50,7 +50,7 @@ func Build(records []Record) (*Node, error) {
 			if r.Parent == 0 {
 				continue
 			} else {
-				return nil, fmt.Errorf("Root node have parent")
+				return nil, fmt.Errorf("root node have parent")
 			}
 		} else if r.ID <= r.Parent {
 			return nil, RecordMismatch{RecordID: r.ID}

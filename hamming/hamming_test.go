@@ -7,7 +7,7 @@ func TestHamming(t *testing.T) {
 		got, err := Distance(tc.s1, tc.s2)
 		if tc.expectError {
 			// check if err is of error type
-			var _ error = err
+			var _ = err
 
 			// we expect error
 			if err == nil {
