@@ -13,9 +13,9 @@ jobs:
       - id: set-matrix
         run: |
           mapfile -d $'\0' projects < <(find . -maxdepth 1 -mindepth 1 -type d -not -path '*/[.]*' -printf '%P\0')
-          echo -n 'name=matrix::{"project": [' >> "$GITHUB_OUTPUT"
-          printf '"%s",' "${projects[@]}" | sed '$s/,$//' >> "$GITHUB_OUTPUT"
-          echo ']}' >> "$GITHUB_OUTPUT"
+          echo -n '::set-output name=matrix::{"project": ['
+          printf '"%s",' "${projects[@]}" | sed '$s/,$//'
+          echo ']}'
   golangci:
     name: lint
     needs: projects
