@@ -131,7 +131,7 @@ func TestTallyError(t *testing.T) {
 		if err == nil {
 			t.Fatalf("Tally for input %q should have failed but didn't.", s)
 		}
-		var _ error = err
+		_ = err
 	}
 }
 
@@ -139,11 +139,11 @@ func BenchmarkTally(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		for _, tt := range happyTestCases {
 			var buffer bytes.Buffer
-			Tally(strings.NewReader(tt.input), &buffer)
+			_ = Tally(strings.NewReader(tt.input), &buffer)
 		}
 		for _, s := range errorTestCases {
 			var buffer bytes.Buffer
-			Tally(strings.NewReader(s), &buffer)
+			_ = Tally(strings.NewReader(s), &buffer)
 		}
 	}
 }

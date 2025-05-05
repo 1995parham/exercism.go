@@ -49,7 +49,7 @@ func Tally(r io.Reader, w io.Writer) error {
 
 		m := strings.Split(l, ";")
 		if len(m) != 3 {
-			return fmt.Errorf("Invalid input: %s", l)
+			return fmt.Errorf("invalid input: %s", l)
 		}
 
 		switch m[2] {
@@ -63,11 +63,11 @@ func Tally(r io.Reader, w io.Writer) error {
 			matches[m[0]] += "D"
 			matches[m[1]] += "D"
 		default:
-			return fmt.Errorf("Invalid input: %s", l)
+			return fmt.Errorf("invalid input: %s", l)
 		}
 	}
 	if len(matches) == 0 {
-		return fmt.Errorf("At least one team must exist")
+		return fmt.Errorf("at least one team must exist")
 	}
 
 	teams := make([]Team, len(matches))
