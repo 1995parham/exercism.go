@@ -1,3 +1,5 @@
+//go:build bonus
+
 package robotname
 
 import "testing"

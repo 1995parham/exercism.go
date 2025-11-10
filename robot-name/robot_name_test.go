@@ -1,4 +1,4 @@
-// +build !bonus
+//go:build !bonus
 
 package robotname
 
